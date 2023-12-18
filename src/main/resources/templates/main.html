@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/stili.css}">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="card_block">
+    <div th:each="user:${users}" class="cards">
+        <div class="createAccount" id="registration">
+            <div class="card">
+                <img th:src="${user.photo} == null ? @{/pictures/1689061007_uhd-name-p-irina-osnovina-instagram-56.png}
+                 : @{'data:image/png;base64,' + ${user.photo}}"
+                     width="300"
+                     height="300" alt="">
+                <p class="title" th:text="${user.lastname} + ' ' + ${user.firstname}"></p>
+                <p class="price" th:text="${user.birthdate}"></p>
+                <p class="price" th:text="${user.tag}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openForm() {
+        return location.href = "/logout";
+    }
+</script>
+</body>
+</html>

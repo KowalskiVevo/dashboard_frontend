@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/stili.css}">
+</head>
+<header th:insert="blocks/header :: header"></header>
+<main_block>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="photo">
+            <img th:src="${user.photo} == null ? @{/pictures/1689061007_uhd-name-p-irina-osnovina-instagram-56.png}
+                 : @{'data:image/png;base64,' + ${user.photo}}"
+                 width="500"
+                 height="500" alt="">
+        </div>
+        <div class="buttons">
+            <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
+        </div>
+        <div class="info_redact">
+            <label for="lastname">Фамилия</label>
+            <input type="text" id="lastname" name="lastname" th:value="${user.lastname}"/>
+        </div>
+        <div class="info_redact">
+            <label for="firstname">Имя</label>
+            <input type="text" id="firstname" name="firstname" th:value="${user.firstname}"/>
+        </div>
+        <div class="info_redact">
+            <label for="birthdate">Дата рождения</label>
+            <input type="date" id="birthdate" name="birthdate" th:value="${user.birthdate.toString()}"/>
+        </div>
+        <div class="info_redact">
+            <label for="about">О себе</label>
+            <textarea name="about" id="about"></textarea>
+        </div>
+        <div class="buttons">
+            <button class="button_edit" type="submit">Сохранить</button>
+        </div>
+    </form>
+</main_block>
+<script>
+    function openForm() {
+        return location.href = "/logout";
+    }
+</script>
+</html>

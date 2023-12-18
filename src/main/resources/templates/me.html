@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой аккаунт</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/stili.css}">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="card_block">
+    <div class="createAccount" id="registration">
+        <div class="card">
+            <img th:src="${user.photo} == null ? @{/pictures/1689061007_uhd-name-p-irina-osnovina-instagram-56.png}
+                 : @{'data:image/png;base64,' + ${user.photo}}"
+                 width="400"
+                 height="400" alt="">
+            <ul>
+                <li th:text="${user.lastname} + ' ' + ${user.firstname}"></li>
+                <li th:text="${user.birthdate}"></li>
+                <li th:text="${user.about}"></li>
+                <li th:text="${user.tag}"></li>
+            </ul>
+            <div class="buttons">
+                <button class="button_edit" onclick="openForm()">Редактировать</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openForm() {
+        return location.href = "/me/edit";
+    }
+</script>
+</body>
+</html>

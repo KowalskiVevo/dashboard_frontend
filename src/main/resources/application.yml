@@ -1,0 +1,43 @@
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/dashboard_realm
+      client:
+        provider:
+          keycloak:
+            token-uri: http://localhost:8080/realms/dashboard_realm/protocol/openid-connect/token
+            issuer-uri: http://localhost:8080/realms/dashboard_realm
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            authorization-grant-type: authorization_code
+            client-id: my-client
+            #            client-secret: --generated--
+            scope: openid
+
+app:
+  backend:
+    name: dashboardBackend
+    url: http://localhost:8081
+
+logging:
+  level:
+    root: info
+  file:
+    name: ${logging.file.path}/dashboard-frontend.log
+    path: logs
+  pattern:
+    file: '"%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"'
+
+feign:
+  oauth2:
+    enabled: true
+    clientRegistrationId: keycloak
+  client:
+    config:
+      dashboardBackend:
+        logger-level: FULL

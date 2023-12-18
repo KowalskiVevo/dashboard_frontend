@@ -1,0 +1,36 @@
+<div th:fragment="header">
+    <div class="top-bar">
+        <ul class="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/me">Мой аккаунт</a></li>
+            <li><a href="/message">Написать письмо</a></li>
+        </ul>
+        <div class="kololol2">
+            <a href="#openModal">
+                <img th:src="@{/pictures/pngwing.com.png}" width="25px" height="17px">
+            </a>
+        </div>
+        <div class="button_end">
+            <button class="open-button" onclick="openForm()" th:text="${user.lastname} + ' ' + ${user.firstname}"></button>
+        </div>
+    </div>
+    <div id="openModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Уведомления</h3>
+                    <a href="#close" title="Close" class="close">×</a>
+                </div>
+                <div th:if="${notifics != null}">
+                    <div th:each="notific:${notifics}" class="modal-body">
+                        <ul>
+                            <li th:text="'От: ' + ${notific.user.lastname} + ' ' + ${notific.user.firstname}"></li>
+                            <li th:text="'Тема: ' + ${notific.message.theme}"></li>
+                            <li th:text="${notific.message.content}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
