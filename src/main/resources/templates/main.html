@@ -9,6 +9,20 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
 <div class="card_block">
+    <div th:each="user:${usersBirthday}" class="cards">
+        <div class="createAccountBirthday" id="registration">
+            <div class="card">
+                <img th:src="${user.photo} == null ? @{/pictures/1689061007_uhd-name-p-irina-osnovina-instagram-56.png}
+                 : @{'data:image/png;base64,' + ${user.photo}}"
+                     width="300"
+                     height="300" alt="">
+                <p class="title" th:text="${user.lastname} + ' ' + ${user.firstname}"></p>
+                <p class="title" th:text="${user.birthdate}"></p>
+                <p class="title" th:text="${user.tag}"></p>
+                <p class="title" th:text="${user.about}"></p>
+            </div>
+        </div>
+    </div>
     <div th:each="user:${users}" class="cards">
         <div class="createAccount" id="registration">
             <div class="card">
@@ -17,12 +31,45 @@
                      width="300"
                      height="300" alt="">
                 <p class="title" th:text="${user.lastname} + ' ' + ${user.firstname}"></p>
-                <p class="price" th:text="${user.birthdate}"></p>
-                <p class="price" th:text="${user.tag}"></p>
+                <p class="title" th:text="${user.birthdate}"></p>
+                <p class="title" th:text="${user.tag}"></p>
+                <p class="title"> </p>>
             </div>
         </div>
     </div>
 </div>
+<!--<div class="card_block">-->
+<!--    <div th:each="user:${usersBirthday}" class="cards">-->
+<!--        <div class="createAccountBirthday" id="registration">-->
+<!--            <div class="card">-->
+<!--                <img th:src="${user.photo} == null-->
+<!--                    ? @{/pictures/1689061007_uhd-name-p-irina-osnovina-instagram-56.png}-->
+<!--                    : @{'data:image/png;base64,' + ${user.photo}}"-->
+<!--                     width="300"-->
+<!--                     height="300" alt="">-->
+<!--                <p class="title" th:text="${user.lastname} + ' ' + ${user.firstname}"></p>-->
+<!--                <p class="title" th:text="${user.birthdate}"></p>-->
+<!--                <p class="title" th:text="${user.tag}"></p>-->
+<!--                <p class="title" th:text="${user.about}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div th:each="user:${users}" class="cards">-->
+<!--        <div class="createAccount" id="registration">-->
+<!--            <div class="card">-->
+<!--                <img th:src="${user.photo} == null-->
+<!--                    ? @{/pictures/1689061007_uhd-name-p-irina-osnovina-instagram-56.png}-->
+<!--                    : @{'data:image/png;base64,' + ${user.photo}}"-->
+<!--                     width="300"-->
+<!--                     height="300" alt="">-->
+<!--                <p class="title" th:text="${user.lastname} + ' ' + ${user.firstname}"></p>-->
+<!--                <p class="price" th:text="${user.birthdate}"></p>-->
+<!--                <p class="price" th:text="${user.tag}"></p>-->
+<!--                <p class="title" th:text=""></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <script>
     function openForm() {
         return location.href = "/logout";

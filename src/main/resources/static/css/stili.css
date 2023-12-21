@@ -461,9 +461,27 @@ button[disabled] {
     box-sizing: border-box;
     z-index: 100;
 }
+
+.createAccountBirthday {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 30px 16px;
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(crimson, gold, yellowgreen, teal, crimson);;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    color: #001b38;
+    box-sizing: border-box;
+    z-index: 100;
+    animation: background 2s infinite alternate;
+}
+
 @media (min-width: 450px) {
     .createAccount {
-        padding: 50px 65px;
+        /*padding: 50px 65px;*/
     }
 }
 
@@ -683,4 +701,10 @@ input.multiselect_checkbox {
 
 .multiselect_checkbox:checked ~ .field_multiselect_help {
     opacity: 1;
+}
+
+@keyframes background {
+    100% {
+        background-position: 0 200px;
+    }
 }

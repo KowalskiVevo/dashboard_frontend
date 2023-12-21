@@ -24,7 +24,6 @@
                                 <label for="checkbox-1" class="multiselect_label"></label>
 
                                 <select id="select-1" class="field_select" name="users" multiple style="@media (min-width: 768px) { height: calc(4 * 38px)}">
-                                    <option value="all">All</option>
                                     <option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
                                 </select>
                                 <span class="field_multiselect_help">You can select several items by pressing <b>Ctrl(or Command)+Element</b></span>
