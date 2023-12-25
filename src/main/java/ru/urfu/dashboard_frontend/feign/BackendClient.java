@@ -20,8 +20,8 @@ public interface BackendClient {
   @GetMapping("/api/all")
   ResponseEntity<List<UserDto>> getAllUser();
 
-  @PutMapping("/api/user")
-  ResponseEntity<UserDto> putUser(@RequestBody UserDto userDto, @RequestParam(required = false) MultipartFile photo);
+  @PutMapping(value = "/api/user")
+  ResponseEntity<UserDto> putUser(@RequestBody UserDto userDto);
 
   @PostMapping("/api/message")
   ResponseEntity createMessage(@RequestBody MessageDto messageDto);

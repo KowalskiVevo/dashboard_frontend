@@ -24,7 +24,7 @@
                 <div th:if="${notifics != null}">
                     <div th:each="notific:${notifics}" class="modal-body">
                         <ul>
-                            <li th:text="'От: ' + ${notific.user.lastname} + ' ' + ${notific.user.firstname}"></li>
+                            <li th:text="'От: ' + ${notific.message.userFrom.lastname} + ' ' + ${notific.message.userFrom.firstname}"></li>
                             <li th:text="'Тема: ' + ${notific.message.theme}"></li>
                             <li th:text="${notific.message.content}"></li>
                         </ul>

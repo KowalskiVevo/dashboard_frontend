@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +15,10 @@ import ru.urfu.dashboard_frontend.dto.MessageDto;
 import ru.urfu.dashboard_frontend.dto.UserDto;
 import ru.urfu.dashboard_frontend.feign.BackendClient;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.function.Predicate;
 
 @Controller
 @RequiredArgsConstructor
@@ -126,11 +125,19 @@ public class DashboardController {
         .lastname(lastname)
         .firstname(firstname)
         .about(about)
+        .photo(Optional.ofNullable(avatar)
+            .filter(Objects::nonNull)
+            .filter(pic -> pic.getSize() > 0)
+            .map(pic -> {
+              try {
+                return Base64.getEncoder().encodeToString(pic.getBytes());
+              } catch (Exception e) {
+                log.error(e.getMessage(), e);
+                return null;
+              }
+            }).orElse(null))
         .build();
-    if (avatar.getSize() <= 0) {
-      avatar = null;
-    }
-    UserDto savedUser = Optional.ofNullable(backendClient.putUser(newUserData, avatar))
+    UserDto savedUser = Optional.ofNullable(backendClient.putUser(newUserData))
         .map(ResponseEntity::getBody)
         .orElse(UserDto.builder()
             .firstname("John")
